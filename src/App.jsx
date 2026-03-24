@@ -7,6 +7,7 @@ import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
   return null;
@@ -56,10 +57,10 @@ const GlobalGlow = ({ children }) => {
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_60%,rgba(0,0,0,0.85))]" />
 
       {/* ✨ SUBTLE CURSOR GLOW (luxury micro-interaction) */}
-      <CursorGlow />
+      {typeof window !== 'undefined' && window.innerWidth > 768 && <CursorGlow />}
 
       {/* ✨ LUXURY CUSTOM CURSOR */}
-      <LuxuryCursor />
+      {typeof window !== 'undefined' && window.innerWidth > 768 && <LuxuryCursor />}
 
       {/* MICRO NOISE (removes flat digital feel) */}
       <div
@@ -82,6 +83,7 @@ const CursorGlow = () => {
   const [pos, setPos] = useState({ x: 50, y: 50 });
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const move = (e) => {
       const x = (e.clientX / window.innerWidth) * 100;
       const y = (e.clientY / window.innerHeight) * 100;
@@ -129,6 +131,7 @@ const LuxuryCursor = () => {
   const [hover, setHover] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const move = (e) => {
       setPos({ x: e.clientX, y: e.clientY });
     };
