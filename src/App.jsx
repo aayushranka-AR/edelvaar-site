@@ -70,7 +70,7 @@ const GlobalGlow = ({ children }) => {
         }}
       />
 
-      <div className="relative z-10 cursor-none">
+      <div className="relative z-10 md:cursor-none">
         {children}
       </div>
     </div>
@@ -190,7 +190,7 @@ const Hero = () => {
   return (
   <section
     onMouseMove={handleMove}
-    className="relative h-screen flex flex-col justify-center items-center text-center bg-transparent text-white px-6 overflow-hidden"
+    className="relative min-h-screen flex flex-col justify-center items-center text-center bg-transparent text-white px-4 sm:px-6 overflow-hidden"
   >
 
     {/* cinematic vignette */}
@@ -221,7 +221,7 @@ const Hero = () => {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
-      className="text-6xl md:text-7xl font-light mb-6 tracking-wide text-[#c1a75e]"
+      className="text-4xl sm:text-5xl md:text-7xl font-light mb-6 tracking-wide text-[#c1a75e]"
     >
       Authority, Quietly Built.
     </motion.h1>
