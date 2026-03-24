@@ -576,6 +576,34 @@ ${reason}`;
   );
 };
 
+// ---------------- ENGAGEMENT DETAIL PAGE ----------------
+const EngagementPage = ({ title, description }) => (
+  <section className="bg-transparent text-white px-8 py-28 max-w-3xl mx-auto">
+    <div className="flex flex-col items-center mb-10">
+      <img src={logo} className="w-20 opacity-80 mb-4 mix-blend-lighten" />
+      <div className="h-[1px] w-20 bg-gradient-to-r from-transparent via-[#c1a75e] to-transparent opacity-60"></div>
+    </div>
+
+    <h1 className="text-4xl mb-6 text-[#c1a75e] font-light">{title}</h1>
+
+    <p className="text-gray-400 mb-6 leading-relaxed">
+      {description}
+    </p>
+
+    <p className="text-gray-500 text-sm mb-10">
+      This engagement is designed for individuals who value positioning over noise, and authority over attention.
+    </p>
+
+    <Link
+      to={`/request?plan=${encodeURIComponent(title)}`}
+      state={{ plan: title, locked: true }}
+      className="border border-[#c1a75e] px-8 py-3 text-sm tracking-widest hover:bg-[#c1a75e] hover:text-black transition-all duration-500"
+    >
+      Apply Now
+    </Link>
+  </section>
+);
+
 // ---------------- APP ----------------
 const App = () => (
   <GlobalGlow>
@@ -584,11 +612,11 @@ const App = () => (
       <Routes>
         <Route path="/" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><Home /></div>} />
 
-        <Route path="/presence" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><ApplicationForm selectedPlan="Presence Plan" /></div>} />
+        <Route path="/presence" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><EngagementPage title="Presence Plan" description="A structured system to build consistent authority through high-signal content, positioning, and strategic visibility." /></div>} />
 
-        <Route path="/private" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><ApplicationForm selectedPlan="Private Concierge" /></div>} />
+        <Route path="/private" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><EngagementPage title="Private Concierge" description="A fully managed, discreet personal brand system designed for high-level individuals who require precision, control, and exclusivity." /></div>} />
 
-        <Route path="/revamp" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><ApplicationForm selectedPlan="Profile Audit" /></div>} />
+        <Route path="/revamp" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><EngagementPage title="Profile Audit" description="A precision audit of your current presence to identify gaps, misalignment, and opportunities for authority positioning." /></div>} />
 
         <Route path="/request" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><ApplicationForm /></div>} />
 
