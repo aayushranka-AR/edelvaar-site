@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from './assets/logo.png';
+import logo from './assets/Logo.png';
 import miniLogo from './assets/mini-logo.png';
 import { motion } from 'framer-motion';
 import { HashRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
@@ -396,23 +396,49 @@ const Contact = () => (
 );
 
 // ---------------- NAV ----------------
-const Navbar = () => (
-  <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md z-50 py-4 px-8 flex items-center justify-between text-xs tracking-[0.25em] border-b border-gray-900 text-white">
-    {/* logo left */}
-    <Link to="/" className="flex items-center gap-3">
-      <img src={miniLogo} alt="logo" className="w-6 opacity-80" />
-      <span className="text-[#c1a75e] tracking-widest">EDELVAAR</span>
-    </Link>
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
 
-    {/* nav links */}
-    <div className="flex space-x-10">
-      <Link to="/">Home</Link>
-      <Link to="/revamp">Audit</Link>
-      <Link to="/presence">Presence</Link>
-      <Link to="/private">Private</Link>
-    </div>
-  </nav>
-);
+  return (
+    <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-900 text-white">
+      {/* INNER CONTAINER (centers + fixes spacing) */}
+      <div className="max-w-7xl mx-auto px-6 md:px-8 py-4 flex items-center justify-between text-xs tracking-[0.25em]">
+
+        {/* logo */}
+        <Link to="/" className="flex items-center gap-3">
+          <img src={miniLogo} alt="logo" className="w-6 opacity-80" />
+          <span className="text-[#c1a75e] tracking-widest">EDELVAAR</span>
+        </Link>
+
+        {/* desktop nav */}
+        <div className="hidden md:flex space-x-6">
+          <Link to="/">Home</Link>
+          <Link to="/revamp">Audit</Link>
+          <Link to="/presence">Presence</Link>
+          <Link to="/private">Private</Link>
+        </div>
+
+        {/* mobile menu button */}
+        <button
+          className="md:hidden text-[#c1a75e]"
+          onClick={() => setOpen(!open)}
+        >
+          ☰
+        </button>
+      </div>
+
+      {/* mobile dropdown */}
+      {open && (
+        <div className="absolute top-full left-0 w-full bg-black border-t border-gray-800 flex flex-col items-center py-6 space-y-6 md:hidden">
+          <Link onClick={() => setOpen(false)} to="/">Home</Link>
+          <Link onClick={() => setOpen(false)} to="/revamp">Audit</Link>
+          <Link onClick={() => setOpen(false)} to="/presence">Presence</Link>
+          <Link onClick={() => setOpen(false)} to="/private">Private</Link>
+        </div>
+      )}
+    </nav>
+  );
+};
 
 // ---------------- HOME ----------------
 const Home = () => (
