@@ -401,16 +401,16 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
 
         {/* logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src={miniLogo} alt="logo" className="w-6 opacity-80" />
-          <span className="hidden md:block text-[#c1a75e] tracking-widest">EDELVAAR</span>
+          <img src={miniLogo} alt="logo" className="w-5 opacity-80" />
+          <span className="hidden md:block text-[#c1a75e] tracking-widest text-sm">EDELVAAR</span>
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden md:flex gap-8 text-sm tracking-wide">
+        <div className="hidden md:flex gap-6 text-sm tracking-wide">
           <Link to="/">Home</Link>
           <Link to="/revamp">Audit</Link>
           <Link to="/presence">Presence</Link>
@@ -428,11 +428,11 @@ const Navbar = () => {
 
       {/* mobile dropdown */}
       {open && (
-        <div className="absolute top-full left-0 w-full bg-black border-t border-gray-800 flex flex-col items-center py-6 space-y-6 md:hidden">
-          <Link onClick={() => setOpen(false)} to="/">Home</Link>
-          <Link onClick={() => setOpen(false)} to="/revamp">Audit</Link>
-          <Link onClick={() => setOpen(false)} to="/presence">Presence</Link>
-          <Link onClick={() => setOpen(false)} to="/private">Private</Link>
+        <div className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-lg border-t border-gray-800 flex flex-col items-center py-8 space-y-8 md:hidden">
+          <Link className="text-lg tracking-wide" onClick={() => setOpen(false)} to="/">Home</Link>
+          <Link className="text-lg tracking-wide" onClick={() => setOpen(false)} to="/revamp">Audit</Link>
+          <Link className="text-lg tracking-wide" onClick={() => setOpen(false)} to="/presence">Presence</Link>
+          <Link className="text-lg tracking-wide" onClick={() => setOpen(false)} to="/private">Private</Link>
         </div>
       )}
     </nav>
