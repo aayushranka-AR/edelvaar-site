@@ -416,7 +416,7 @@ const Navbar = () => {
 
         {/* desktop nav */}
         <div className="hidden md:flex gap-6 text-sm tracking-wide">
-          <Link to="/">Home</Link>
+          
           <Link to="/revamp">Audit</Link>
           <Link to="/presence">Presence</Link>
           <Link to="/private">Private</Link>
@@ -434,7 +434,7 @@ const Navbar = () => {
       {/* mobile dropdown */}
       {open && (
         <div className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-lg border-t border-gray-800 flex flex-col items-center py-8 space-y-8 md:hidden">
-          <Link className="text-lg tracking-wide" onClick={() => setOpen(false)} to="/">Home</Link>
+          
           <Link className="text-lg tracking-wide" onClick={() => setOpen(false)} to="/revamp">Audit</Link>
           <Link className="text-lg tracking-wide" onClick={() => setOpen(false)} to="/presence">Presence</Link>
           <Link className="text-lg tracking-wide" onClick={() => setOpen(false)} to="/private">Private</Link>
@@ -617,8 +617,7 @@ const EngagementPage = ({ title, description }) => {
             'Confidential reporting & insights',
             'Full NDA & discretion guarantee',
             'Priority access to Edelvaar network',
-            'Crisis communication & reputation support',
-            'Quarterly brand expansion strategy session'
+            'Crisis communication & reputation support'
           ]
         };
 
@@ -644,11 +643,16 @@ const EngagementPage = ({ title, description }) => {
 
       <div className="mb-12">
         <h3 className="text-[#c1a75e] mb-4 text-sm tracking-widest">DELIVERABLES</h3>
-        <ul className="space-y-3 text-gray-400 text-sm">
+        <div className="grid gap-4">
           {deliverables.map((d, i) => (
-            <li key={i}>• {d}</li>
+            <div
+              key={i}
+              className="border border-gray-800 rounded-xl p-4 text-sm text-gray-300 backdrop-blur-sm hover:border-[#c1a75e] hover:shadow-[0_0_20px_rgba(193,167,94,0.15)] transition-all duration-300"
+            >
+              {d}
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
 
       <p className="text-gray-500 text-sm mb-10">
