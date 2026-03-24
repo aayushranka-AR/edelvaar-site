@@ -577,32 +577,111 @@ ${reason}`;
 };
 
 // ---------------- ENGAGEMENT DETAIL PAGE ----------------
-const EngagementPage = ({ title, description }) => (
-  <section className="bg-transparent text-white px-8 py-28 max-w-3xl mx-auto">
-    <div className="flex flex-col items-center mb-10">
-      <img src={logo} className="w-20 opacity-80 mb-4 mix-blend-lighten" />
-      <div className="h-[1px] w-20 bg-gradient-to-r from-transparent via-[#c1a75e] to-transparent opacity-60"></div>
-    </div>
+const EngagementPage = ({ title, description }) => {
+  const getDetails = () => {
+    switch (title) {
+      case 'Profile Audit':
+        return {
+          bullets: [
+            'Positioning gaps in your current profile',
+            'Authority signals you are missing',
+            'Content direction misalignment',
+            'Profile conversion weaknesses'
+          ],
+          deliverables: [
+            'Personalized audit report (PDF)',
+            'Headline & bio rewrite suggestions',
+            'Content direction framework',
+            'Action plan for next 30 days'
+          ]
+        };
 
-    <h1 className="text-4xl mb-6 text-[#c1a75e] font-light">{title}</h1>
+      case 'Presence Plan':
+        return {
+          bullets: [
+            'Consistent authority-building content',
+            'Strategic positioning in your niche',
+            'Visibility without noise',
+            'Compounding audience trust'
+          ],
+          deliverables: [
+            'Monthly content strategy',
+            'Done-for-you post frameworks',
+            'Profile optimization',
+            'Weekly direction & feedback'
+          ]
+        };
 
-    <p className="text-gray-400 mb-6 leading-relaxed">
-      {description}
-    </p>
+      case 'Private Concierge':
+        return {
+          bullets: [
+            'Fully managed personal brand system',
+            'Discreet positioning at high level',
+            'Narrative control & perception design',
+            'Access to premium opportunities'
+          ],
+          deliverables: [
+            'End-to-end brand management',
+            'Ghostwritten content',
+            'Strategic visibility planning',
+            'Direct advisory access'
+          ]
+        };
 
-    <p className="text-gray-500 text-sm mb-10">
-      This engagement is designed for individuals who value positioning over noise, and authority over attention.
-    </p>
+      default:
+        return { bullets: [], deliverables: [] };
+    }
+  };
 
-    <Link
-      to={`/request?plan=${encodeURIComponent(title)}`}
-      state={{ plan: title, locked: true }}
-      className="border border-[#c1a75e] px-8 py-3 text-sm tracking-widest hover:bg-[#c1a75e] hover:text-black transition-all duration-500"
-    >
-      Apply Now
-    </Link>
-  </section>
-);
+  const { bullets, deliverables } = getDetails();
+
+  return (
+    <section className="bg-transparent text-white px-8 py-28 max-w-3xl mx-auto">
+      <div className="flex flex-col items-center mb-10">
+        <img src={logo} className="w-20 opacity-80 mb-4 mix-blend-lighten" />
+        <div className="h-[1px] w-20 bg-gradient-to-r from-transparent via-[#c1a75e] to-transparent opacity-60"></div>
+      </div>
+
+      <h1 className="text-4xl mb-6 text-[#c1a75e] font-light">{title}</h1>
+
+      <p className="text-gray-400 mb-8 leading-relaxed">
+        {description}
+      </p>
+
+      {/* WHAT THIS INCLUDES */}
+      <div className="mb-10">
+        <h3 className="text-[#c1a75e] mb-4 text-sm tracking-widest">WHAT THIS INCLUDES</h3>
+        <ul className="space-y-2 text-gray-400 text-sm">
+          {bullets.map((b, i) => (
+            <li key={i}>• {b}</li>
+          ))}
+        </ul>
+      </div>
+
+      {/* DELIVERABLES */}
+      <div className="mb-12">
+        <h3 className="text-[#c1a75e] mb-4 text-sm tracking-widest">DELIVERABLES</h3>
+        <ul className="space-y-2 text-gray-400 text-sm">
+          {deliverables.map((d, i) => (
+            <li key={i}>• {d}</li>
+          ))}
+        </ul>
+      </div>
+
+      <p className="text-gray-500 text-sm mb-10">
+        This engagement is designed for individuals who value positioning over noise, and authority over attention.
+      </p>
+
+      <Link
+        to={`/request?plan=${encodeURIComponent(title)}`}
+        state={{ plan: title, locked: true }}
+        className="border border-[#c1a75e] px-8 py-3 text-sm tracking-widest hover:bg-[#c1a75e] hover:text-black transition-all duration-500"
+      >
+        Apply Now
+      </Link>
+    </section>
+  );
+};
 
 // ---------------- APP ----------------
 const App = () => (
