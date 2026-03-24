@@ -419,10 +419,10 @@ const Navbar = () => {
 
         {/* mobile button */}
         <button
-          className="md:hidden text-[#c1a75e]"
+          className="md:hidden text-[#c1a75e] text-2xl"
           onClick={() => setOpen(!open)}
         >
-          ☰
+          {open ? '✕' : '☰'}
         </button>
       </div>
 
