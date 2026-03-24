@@ -401,25 +401,23 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-900 text-white">
-      {/* INNER CONTAINER (centers + fixes spacing) */}
-      <div className="max-w-7xl mx-auto px-6 md:px-8 py-4 flex items-center justify-between text-[10px] sm:text-xs tracking-[0.15em]">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between text-[10px] md:text-xs tracking-[0.1em]">
 
         {/* logo */}
         <Link to="/" className="flex items-center gap-2">
           <img src={miniLogo} alt="logo" className="w-6 opacity-80" />
-          {/* hide text on small screens to prevent overlap */}
-          <span className="hidden sm:block text-[#c1a75e] tracking-widest">EDELVAAR</span>
+          <span className="hidden md:block text-[#c1a75e] tracking-widest">EDELVAAR</span>
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex gap-6">
           <Link to="/">Home</Link>
           <Link to="/revamp">Audit</Link>
           <Link to="/presence">Presence</Link>
           <Link to="/private">Private</Link>
         </div>
 
-        {/* mobile menu button */}
+        {/* mobile button */}
         <button
           className="md:hidden text-[#c1a75e]"
           onClick={() => setOpen(!open)}
