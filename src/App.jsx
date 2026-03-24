@@ -401,7 +401,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between text-[10px] md:text-xs tracking-[0.1em]">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
 
         {/* logo */}
         <Link to="/" className="flex items-center gap-2">
@@ -410,7 +410,7 @@ const Navbar = () => {
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden md:flex gap-6">
+        <div className="hidden md:flex gap-8 text-sm tracking-wide">
           <Link to="/">Home</Link>
           <Link to="/revamp">Audit</Link>
           <Link to="/presence">Presence</Link>
