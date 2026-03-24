@@ -415,8 +415,7 @@ const Navbar = () => {
         </Link>
 
         {/* desktop nav */}
-        <div className="hidden md:flex gap-6 text-sm tracking-wide">
-          
+        <div className="hidden md:flex gap-10 text-sm tracking-wide absolute left-1/2 transform -translate-x-1/2">
           <Link to="/revamp">Audit</Link>
           <Link to="/presence">Presence</Link>
           <Link to="/private">Private</Link>
@@ -617,7 +616,7 @@ const EngagementPage = ({ title, description }) => {
             'Confidential reporting & insights',
             'Full NDA & discretion guarantee',
             'Priority access to Edelvaar network',
-            'Crisis communication & reputation support'
+            'Crisis communication & reputation support',
           ]
         };
 
