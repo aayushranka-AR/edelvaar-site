@@ -480,7 +480,9 @@ const ApplicationForm = ({ selectedPlan }) => {
 
   const initialPlan = selectedPlan || state?.plan || queryPlan || 'Profile Audit';
 
+  const options = ['Profile Audit','Presence Plan','Private Concierge','Other'];
   const [plan, setPlan] = useState(initialPlan);
+  const [index, setIndex] = useState(Math.max(0, options.indexOf(initialPlan)));
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
@@ -489,27 +491,38 @@ const ApplicationForm = ({ selectedPlan }) => {
   const isValid = plan && name && email && role && reason;
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = () => {
-    if (!plan || !name || !email || !role || !reason) {
-      setError('All fields are required to proceed.');
-      return;
-    }
+  const handleSubmit = async () => {
+  if (!plan || !name || !email || !role || !reason) {
+    setError('All fields are required to proceed.');
+    return;
+  }
 
-    setError('');
+  setError('');
 
-    const subject = `Application - ${plan}`;
-    const body = `Plan: ${plan}
-Name: ${name}
-Email: ${email}
-Role: ${role}
+  try {
+    const { default: emailjs } = await import('@emailjs/browser');
 
-Why:
-${reason}`;
-
-    window.location.href = `mailto:aayushranka@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    await emailjs.send(
+      'service_p9oc748',
+      'template_79rpn3f',
+      {
+        name,
+        email,
+        plan,
+        role,
+        reason
+      },
+      {
+        publicKey: 'ESmCV31JI1z6D1xpO'
+      }
+    );
 
     setSubmitted(true);
-  };
+  } catch (err) {
+    console.error(err);
+    setError('Submission failed. Please try again.');
+  }
+};
 
   if (submitted) {
     return (
@@ -534,17 +547,58 @@ ${reason}`;
         {locked && (
           <p className="text-xs text-gray-600 mb-2">Selected engagement (curated)</p>
         )}
-        <select
-          value={plan}
-          onChange={(e) => setPlan(e.target.value)}
-          disabled={locked}
-          className={`w-full bg-transparent backdrop-blur-sm border border-gray-800 p-3 text-sm ${locked ? 'opacity-60 cursor-not-allowed' : ''}`}
-        >
-          <option>Profile Audit</option>
-          <option>Presence Plan</option>
-          <option>Private Concierge</option>
-          <option>Other</option>
-        </select>
+        <div
+  className="space-y-3"
+  onWheel={(e)=>{
+    if (locked) return;
+    e.preventDefault();
+    const dir = e.deltaY > 0 ? 1 : -1;
+    const newIndex = Math.min(options.length - 1, Math.max(0, index + dir));
+    setIndex(newIndex);
+    setPlan(options[newIndex]);
+  }}
+  tabIndex={0}
+  onKeyDown={(e)=>{
+    if (locked) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const newIndex = Math.min(options.length - 1, index + 1);
+      setIndex(newIndex);
+      setPlan(options[newIndex]);
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const newIndex = Math.max(0, index - 1);
+      setIndex(newIndex);
+      setPlan(options[newIndex]);
+    }
+  }}
+>
+  {options.map((p, i) => (
+    <div
+      key={p}
+      onMouseEnter={() => {
+        if (locked) return;
+        setIndex(i);
+        setPlan(p);
+      }}
+      onClick={() => {
+        if (locked) return;
+        setIndex(i);
+        setPlan(p);
+      }}
+      className={`relative cursor-pointer border p-3 text-sm transition-all duration-300 backdrop-blur-sm
+        ${index === i ? 'border-[#c1a75e] text-white' : 'border-gray-800 text-gray-400 hover:border-[#c1a75e]'}
+        ${locked ? 'opacity-60 cursor-not-allowed' : ''}`}
+    >
+      {/* animated highlight bar */}
+      <div
+        className={`absolute left-0 top-0 h-full w-[3px] bg-[#c1a75e] transition-all duration-300 ${index === i ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-75'}`}
+      />
+      {p}
+    </div>
+  ))}
+</div>
 
         <input value={name} onChange={(e)=>setName(e.target.value)} placeholder="Full Name" className="w-full bg-transparent backdrop-blur-sm border border-gray-800 p-3 text-sm" />
         <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Email" className="w-full bg-transparent backdrop-blur-sm border border-gray-800 p-3 text-sm" />
@@ -617,6 +671,7 @@ const EngagementPage = ({ title, description }) => {
             'Full NDA & discretion guarantee',
             'Priority access to Edelvaar network',
             'Crisis communication & reputation support',
+            'Quarterly brand expansion strategy session'
           ]
         };
 
@@ -671,25 +726,50 @@ const EngagementPage = ({ title, description }) => {
 
 
 // ---------------- APP ----------------
-const App = () => (
-  <GlobalGlow>
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><Home /></div>} />
+// ---------------- ANALYTICS (Google Analytics) ----------------
 
-        <Route path="/presence" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><EngagementPage title="Presence Plan" description="A structured system to build consistent authority through high-signal content, positioning, and strategic visibility." /></div>} />
+const App = () => {
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
 
-        <Route path="/private" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><EngagementPage title="Private Concierge" description="A fully managed, discreet personal brand system designed for high-level individuals who require precision, control, and exclusivity." /></div>} />
+    const GA_ID = "G-XXXXXXXXXX"; // 🔁 replace with your real ID
 
-        <Route path="/revamp" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><EngagementPage title="Profile Audit" description="A precision audit of your current presence to identify gaps, misalignment, and opportunities for authority positioning." /></div>} />
+    const script1 = document.createElement("script");
+    script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    script1.async = true;
+    document.head.appendChild(script1);
 
-        <Route path="/request" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><ApplicationForm /></div>} />
+    const script2 = document.createElement("script");
+    script2.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);} 
+      gtag('js', new Date());
+      gtag('config', '${GA_ID}');
+    `;
+    document.head.appendChild(script2);
+  }, []);
 
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Router>
-  </GlobalGlow>
-);
+  return (
+
+    <GlobalGlow>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><Home /></div>} />
+
+          <Route path="/presence" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><EngagementPage title="Presence Plan" description="A structured system to build consistent authority through high-signal content, positioning, and strategic visibility." /></div>} />
+
+          <Route path="/private" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><EngagementPage title="Private Concierge" description="A fully managed, discreet personal brand system designed for high-level individuals who require precision, control, and exclusivity." /></div>} />
+
+          <Route path="/revamp" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><EngagementPage title="Profile Audit" description="A precision audit of your current presence to identify gaps, misalignment, and opportunities for authority positioning." /></div>} />
+
+          <Route path="/request" element={<div className="min-h-screen w-screen bg-transparent overflow-x-hidden"><ApplicationForm /></div>} />
+
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Router>
+    </GlobalGlow>
+  );
+};
 
 export default App;
