@@ -574,30 +574,21 @@ const ApplicationForm = ({ selectedPlan }) => {
     }
   }}
 >
-  {options.map((p, i) => (
-    <div
-      key={p}
-      onMouseEnter={() => {
-        if (locked) return;
-        setIndex(i);
-        setPlan(p);
-      }}
-      onClick={() => {
-        if (locked) return;
-        setIndex(i);
-        setPlan(p);
-      }}
-      className={`relative cursor-pointer border p-3 text-sm transition-all duration-300 backdrop-blur-sm
-        ${index === i ? 'border-[#c1a75e] text-white' : 'border-gray-800 text-gray-400 hover:border-[#c1a75e]'}
-        ${locked ? 'opacity-60 cursor-not-allowed' : ''}`}
-    >
-      {/* animated highlight bar */}
-      <div
-        className={`absolute left-0 top-0 h-full w-[3px] bg-[#c1a75e] transition-all duration-300 ${index === i ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-75'}`}
-      />
+  <select
+  value={plan}
+  onChange={(e) => {
+    setPlan(e.target.value);
+    setIndex(options.indexOf(e.target.value));
+  }}
+  disabled={locked}
+  className="w-full bg-transparent backdrop-blur-sm border border-gray-800 p-3 text-sm text-white appearance-none focus:border-[#c1a75e] outline-none"
+>
+  {options.map((p) => (
+    <option key={p} value={p} className="bg-black text-white">
       {p}
-    </div>
+    </option>
   ))}
+</select>
 </div>
 
         <input value={name} onChange={(e)=>setName(e.target.value)} placeholder="Full Name" className="w-full bg-transparent backdrop-blur-sm border border-gray-800 p-3 text-sm" />
