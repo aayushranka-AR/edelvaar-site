@@ -471,18 +471,18 @@ const Home = () => (
             <g id="star">
               <polygon points="0,-6 1.76,-1.85 6,-1.85 2.12,0.71 3.53,5 0,2.4 -3.53,5 -2.12,0.71 -6,-1.85 -1.76,-1.85"/>
             </g>
-            <use href="#star" transform="rotate(0) translate(0,-12)"/>
-            <use href="#star" transform="rotate(30) translate(0,-12)"/>
-            <use href="#star" transform="rotate(60) translate(0,-12)"/>
-            <use href="#star" transform="rotate(90) translate(0,-12)"/>
-            <use href="#star" transform="rotate(120) translate(0,-12)"/>
-            <use href="#star" transform="rotate(150) translate(0,-12)"/>
-            <use href="#star" transform="rotate(180) translate(0,-12)"/>
-            <use href="#star" transform="rotate(210) translate(0,-12)"/>
-            <use href="#star" transform="rotate(240) translate(0,-12)"/>
-            <use href="#star" transform="rotate(270) translate(0,-12)"/>
-            <use href="#star" transform="rotate(300) translate(0,-12)"/>
-            <use href="#star" transform="rotate(330) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(0) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(30) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(60) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(90) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(120) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(150) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(180) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(210) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(240) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(270) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(300) translate(0,-12)"/>
+            <use xlinkHref="#star" transform="rotate(330) translate(0,-12)"/>
           </g>
         </svg>
       </span> — Crafted with precision and intent.<br />
