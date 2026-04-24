@@ -465,7 +465,7 @@ const Home = () => (
           <rect y="4" width="18" height="4" fill="#000000"/>
           <rect y="8" width="18" height="4" fill="#FFFFFF"/>
         </svg>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" style={{height:'12px'}} />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" style={{height:'10px'}} />
       </span> — Crafted with precision and intent.<br />
       Refined. Discreet. Exceptional.
     </footer>
