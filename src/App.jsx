@@ -458,11 +458,24 @@ const Home = () => (
     <footer className="bg-transparent text-gray-600 text-center py-12 text-xs border-t border-gray-900">
       <img src={miniLogo} alt="logo" className="mx-auto w-8 mb-4 opacity-70" />
       <span className="text-[#c1a75e]">Edelvaar 2026</span><br />
-      From Estonia <span style={{display:'inline-flex',verticalAlign:'middle'}}>
+      From Estonia <span style={{display:'inline-flex',verticalAlign:'middle',gap:'6px'}}>
         <svg width="14" height="9" viewBox="0 0 18 12" xmlns="http://www.w3.org/2000/svg">
           <rect width="18" height="4" fill="#0072CE"/>
           <rect y="4" width="18" height="4" fill="#000000"/>
           <rect y="8" width="18" height="4" fill="#FFFFFF"/>
+        </svg>
+        <svg width="14" height="10" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+          <rect width="60" height="40" fill="#003399"/>
+          <g fill="#FFCC00">
+            <circle cx="30" cy="8" r="2"/>
+            <circle cx="42" cy="12" r="2"/>
+            <circle cx="48" cy="20" r="2"/>
+            <circle cx="42" cy="28" r="2"/>
+            <circle cx="30" cy="32" r="2"/>
+            <circle cx="18" cy="28" r="2"/>
+            <circle cx="12" cy="20" r="2"/>
+            <circle cx="18" cy="12" r="2"/>
+          </g>
         </svg>
       </span> — Crafted with precision and intent.<br />
       Refined. Discreet. Exceptional.
