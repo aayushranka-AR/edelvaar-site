@@ -444,6 +444,7 @@ const Navbar = () => {
 };
 
 // ---------------- HOME ----------------
+
 const Home = () => (
   <div className="min-h-screen bg-transparent">
     <Navbar />
@@ -464,27 +465,7 @@ const Home = () => (
           <rect y="4" width="18" height="4" fill="#000000"/>
           <rect y="8" width="18" height="4" fill="#FFFFFF"/>
         </svg>
-        <svg width="18" height="12" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-          <rect width="60" height="40" fill="#003399"/>
-          <!-- 12 stars in a circle (proper EU flag proportions) -->
-          <g fill="#FFCC00" transform="translate(30,20)">
-            <g id="star">
-              <polygon points="0,-6 1.76,-1.85 6,-1.85 2.12,0.71 3.53,5 0,2.4 -3.53,5 -2.12,0.71 -6,-1.85 -1.76,-1.85"/>
-            </g>
-            <use xlinkHref="#star" transform="rotate(0) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(30) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(60) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(90) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(120) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(150) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(180) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(210) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(240) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(270) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(300) translate(0,-12)"/>
-            <use xlinkHref="#star" transform="rotate(330) translate(0,-12)"/>
-          </g>
-        </svg>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" style={{height:'12px'}} />
       </span> — Crafted with precision and intent.<br />
       Refined. Discreet. Exceptional.
     </footer>
